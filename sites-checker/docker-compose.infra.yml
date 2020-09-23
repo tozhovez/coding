@@ -1,0 +1,40 @@
+version: '3.7'
+
+networks:
+  sites-checker:
+    name: sites-checker
+    driver: bridge
+
+services:
+
+#####################################################################
+#          Queues, Brokers, Logging, DB, Infra services, etc        #
+#####################################################################
+  postgresql:
+    container_name: postgresql
+    image: "postgres:12.4"
+    hostname: "postgresql"
+    volumes:
+      - ${HOME}/sites-storage/postgresql/data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5400:5432"
+    environment:
+      - POSTGRES_HOST=localhost
+      - POSTGRES_USER=docker
+      - POSTGRES_PASSWORD=docker
+    restart: unless-stopped
+    networks:
+      - sites-checker
+      
+  consul:
+    container_name: consul
+    image: "consul:latest"
+    hostname: "consul"
+    volumes:
+      - ${HOME}/sites-storage/consul/data:/consul/data
+    ports:
+      - 8500:8500
+    command: agent -server -ui -bind 0.0.0.0 -client 0.0.0.0 -bootstrap -bootstrap-expect 1
+    restart: unless-stopped
+    networks:
+      - sites-checker

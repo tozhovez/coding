@@ -1,0 +1,14 @@
+{
+    "shared": {
+
+        "postgres_url": "postgres://docker:docker@localhost:5400/sites_checker_service"
+    },
+    "sites-checker-service": {
+        "data_src_folfer": "sites-storage/requests",
+        "data_src_url": "https://elementor-pub.s3.eu-central-1.amazonaws.com/Data-Enginner/Challenge1/request1.csv",
+        "virus_total_src_folfer": "sites-storage/reports",
+        "virus_total_src_url": "https://www.virustotal.com/api/v3",
+        "job_interval": 1800,
+        "x-apikey": "6bc85c06f769fe6e606eaa4e47648723bbc5f3e42bb627dc327b867b5c7f014c"
+    }
+}

@@ -1,0 +1,21 @@
+version: '3.7'
+
+networks:
+  sites-checker:
+    name: sites-checker
+    driver: bridge
+
+services:
+
+#####################################################################
+#                       services                                    #
+#####################################################################
+  sites-checker-service:
+    build:
+      context: SitesCheckerService/.
+      dockerfile: Dockerfile
+      args:
+        BUILD_VERSION: ${BUILD_VERSION}
+    logging:
+      driver: "json-file"
+

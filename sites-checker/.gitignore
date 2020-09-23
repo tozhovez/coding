@@ -1,0 +1,34 @@
+# Project files
+.idea/
+.idea
+.history/
+
+
+models/
+.vscode/
+*.out
+
+# Environment
+venv
+
+# Code build files
+*.egg-info
+__pycache__/
+*.pyc
+
+**.version
+
+# Weight files
+*.weights
+*.hdf5
+*.h5
+
+*.caffemodel
+*.prototxt
+
+# pytest
+.pytest_cache
+
+
+
+docker-compose.local.yml
