@@ -37,11 +37,9 @@ class SitesCheckerService:
     async def status(self):
         status_code = 0
 
-        service_state = {
+        return {
             'status_code': status_code,
         }
-
-        return service_state
 
 
     async def kill(self):

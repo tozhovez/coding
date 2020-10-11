@@ -17,8 +17,10 @@ class CoreModule(Module):
     @provider
     def provide_consul_client(self) -> ConsulClient:
         """innit consul client"""
-        consul_client = ConsulClient(host=os.getenv('CONSUL_HOST', '127.0.0.1'), prefix='sites-checker-service')
-        return consul_client
+        return ConsulClient(
+            host=os.getenv('CONSUL_HOST', '127.0.0.1'),
+            prefix='sites-checker-service',
+        )
 
     @singleton
     @provider
@@ -26,20 +28,17 @@ class CoreModule(Module):
                                 conf_service: ConfigService
                                 ) -> PostgresClient:
         """innit Postgres client"""
-        postgres_client = PostgresClient(dsn=conf_service.postgres_url)
         # TODO: check asyncio support
         # await postgres_client.connect()
-        return postgres_client
+        return PostgresClient(dsn=conf_service.postgres_url)
 
     @singleton
     @provider
     def provide_logger(self) -> Logger:
         """innit logger"""
-        logger = get_logger(
+        return get_logger(
             logger_name='SitesCheckerService',
             logger_format=LoggingFormat.JSON,
             logger_level=logging.INFO,
             logger_output=LoggingOutput.STDOUT,
         )
-
-        return logger

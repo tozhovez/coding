@@ -19,9 +19,7 @@ class HealthCheckController:
 
         # write response
 
-        res_status = 200
-
-        return res_status
+        return 200
 
 
 

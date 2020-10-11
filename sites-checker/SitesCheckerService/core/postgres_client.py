@@ -30,8 +30,7 @@ class PostgresClient:
     def select(self, query):
         cursor = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         cursor.execute(query)
-        for result in cursor.fetchall():
-            yield result
+        yield from cursor.fetchall()
         cursor.close()
 
 
@@ -73,8 +72,7 @@ class PostgresClient:
         cursor = self.conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
         try:
             cursor.execute(sql)
-            for result in cursor.fetchall():
-                yield result
+            yield from cursor.fetchall()
         except psycopg2.DatabaseError as ex:
             raise ex
         else:
