@@ -43,14 +43,11 @@ class ConsulClient(object):
            stop=stop_after_delay(RETRY_DELAY_IN_SECONDS))
     def get_all(self):
         try:
-            only_kv_data = []
             _, data = self.consul_client.kv.get(key='', recurse=True)
-            for item in data:
-                only_kv_data.append({
+            return [{
                     "Key": item['Key'],
                     "Value": json.loads((item['Value'].decode('utf-8')))
-                })
-            return only_kv_data
+                } for item in data]
         except ConnectionError as ex:
             self.connect()
             raise ex

@@ -13,8 +13,7 @@ class JobManager:
         self.scheduler.add_job(callback, 'interval', seconds=interval)
 
     def run_once(self, callback, args: list):
-        job = self.scheduler.add_job(callback, 'date', args=args)
-        return job
+        return self.scheduler.add_job(callback, 'date', args=args)
 
     def start(self):
         self.scheduler = AsyncIOScheduler()
