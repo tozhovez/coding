@@ -1,7 +1,7 @@
 asyncio==3.4.3
 psycopg2-binary==2.8.6
 python-consul==1.1.0
-sanic==20.6.3
+sanic==20.12.7
 Sanic-Cors==0.10.0.post3
 sanic-healthchecks==1.0.1
 injector==0.18.3
